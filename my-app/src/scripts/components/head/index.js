@@ -21,8 +21,8 @@ export class Head extends Component{
         }  = this.props;
         return (
             <NavBar
-                mode="dark"
-                icon={show&&<Icon type="left" />}
+                mode="light"
+                icon={show&&<Icon type="left" color="#555" />}
                 onLeftClick={() => this.goback(show)}
                 rightContent={[
                   

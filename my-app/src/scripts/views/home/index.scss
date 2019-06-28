@@ -1,61 +1,73 @@
+.home {
+
+    width: 100vw;
+    height: 100vh;
 
 
+    .carousel {
+        height: 300px
+            /*no*/
+    }
 
+    .top {
+        width: 100%;
+        height: 500px;
+        background-color: #4099fb;
 
-.carousel{
-    height:300px /*no*/
-}
-.top{
-    width: 100%;
-    height: 40vh;
-    background-color: #4099fb;
-    .search{
-        text-align: center;
-        line-height: 60px;
-        height: 60px;
-        background-color: #60acfd;
-        margin:0px 30px;
-        border-radius: 30px;
-        color:#f1f9f9;
-        overflow: hidden;
-        position: relative;
-        .am-icon{
-            margin-top: 10px;
+        .search {
+            text-align: center;
+            line-height: 60px;
+            height: 60px;
+            background-color: #60acfd;
+            margin: 0px 30px;
+            border-radius: 30px;
+            color: #f1f9f9;
+            overflow: hidden;
+            position: relative;
+
+            .am-icon {
+                margin-top: 10px;
+            }
+
+            span {
+                line-height: 20px;
+                margin-bottom: 10px;
+                position: absolute;
+                left: 55%;
+                top: 20px;
+            }
         }
-        span{
-            line-height: 20px;
-            margin-bottom: 10px;
-            position: absolute;
-            left: 55%;
-            top: 20px;
+
+        img {
+            height: 280px;
+            border-radius: 20px;
         }
-    }
-    img{
-        height: 280px;
-        border-radius: 20px;
-    }
-    .am-notice-bar{
-        background-color: #3384de;
-        color: #f1f9f9;
-        border-radius: 16px;
-    }
-}
-.bottom{
-    width: 100%;
-    height: 60vh;
-    background-color: #f1f9f9;
-    padding-left: 40px;
-    div{
-        width: 40%;
-        height: 230px;
-        float: left;
-        margin-top: 60px;
-        img{
-            width: 80%;
-            height: 230px;
-            margin-left: 65px;
+
+        .am-notice-bar {
+            background-color: #3384de;
+            color: #f1f9f9;
+            border-radius: 16px;
         }
     }
+
+    .bottom {
+        // width: 100%;
+        // height: 600px;
+        // background-color: #f1f9f9;
+        // padding-left: 40px;
+
+        // div {
+        //     width: 40%;
+        //     height: 230px;
+        //     float: left;
+        //     margin-top: 60px;
+
+            img {
+                width: 230px;
+                height: 230px;
+                margin-left: 70px;
+            }
+        
+    }
+
 }
-
-

@@ -42,3 +42,8 @@ html,body,#app,.box,#main{
 .move-out{
     animation: zoomOutDown .9s;
 }
+.am-navbar-title{
+    overflow: hidden;
+    padding-left: 30px;
+    font-size: 30px;
+}

@@ -42,9 +42,11 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
 
 
-    setTimeout(()=>{
-        info(response.data.msg);
-    },500);
+    if(response.data.msg){
+        setTimeout(()=>{
+            info(response.data.msg);
+        },500);
+    }
 
     if(response.data.code=="401"){
         history.push("/login");

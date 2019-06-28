@@ -1,0 +1,60 @@
+.hosDiv {
+    overflow: hidden;
+    padding: 15px;
+
+    img {
+        width: 160px;
+        height: 160px;
+        border-radius: 14px;
+        margin-right: 15px;
+        float: left;
+    }
+
+    .detail {
+        float: left;
+        width: 70%;
+        height: 180px;
+        line-height: 40px;
+        .title {
+            font-size: 27px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            .level {
+                display: inline-block;
+                font-size: 20px;
+                // width: 100px;
+                padding:5px;
+                background-color: #4099fb;
+                color: #f1f9f9;
+                height: 36px;
+                text-align: center;
+                border-radius: 10px;
+                text-align: center;
+                line-height: 36px;
+                margin-right: 10px;
+            }
+        }
+
+        .tel {
+            font-size: 24px;
+            color: #999;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .address {
+            width: 80%;
+            color: #999;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .time{
+           color:#4099fb;
+           font-size: 24px;
+        }
+    }
+}

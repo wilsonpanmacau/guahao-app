@@ -4,6 +4,18 @@ import { Head } from "~/components/head"
 import { Accordion, List } from 'antd-mobile';
 import PropTypes from "prop-types"
 import axios from "@/utils/axios"
+import  store  from "~/store";
+import history from "@/utils/history";
+import { getTypeName,getHosList } from "~/actions";
+import {connect} from "react-redux";
+
+@connect(
+    state=>{
+        return {
+            ...state.data
+        }
+    }
+)
 export default class Appointment extends Component {
     state = {
         types: []
@@ -19,16 +31,31 @@ export default class Appointment extends Component {
 
     }
     //跳转到科室所对应的医院
-    goHospitalList(type){
-        const {history} = this.context.props;
-        history.push(`/app/hospitalList?type=${type}`);
+    gotoHosList=(type)=>{
+        
+        console.log(this.props)
+        const{
+            dispatch
+        } = this.props
+        dispatch(getTypeName(type));
+        dispatch(getHosList({
+            url: "/react/getHospitals",
+            params: {
+               
+            },
+            cb: (res) => {
+                console.log(res);
+            }
+        }))
+        history.push("/app/hospitalList")
+        
     }
     render() {
         return (
             <div>
                 <Head title="预约挂号" show={true}></Head>
-                <div style={{ marginTop: 10, marginBottom: 10 }}>
-                    <Accordion  className="my-accordion">
+                <div>
+                    <Accordion className="my-accordion">
                         {
                             this.state.types.map((type, i) => (
                                 <Accordion.Panel key={i} header={type.type}>
@@ -36,7 +63,7 @@ export default class Appointment extends Component {
                                         {
                                             type.littleType.map((lt, j) => (
 
-                                                <List.Item onClick={()=>{this.goHospitalList(lt)}} key={j}>{lt}</List.Item>
+                                                <List.Item onClick={()=>this.gotoHosList(lt)} key={j}>{lt}</List.Item>
 
                                             ))
                                         }
@@ -52,8 +79,8 @@ export default class Appointment extends Component {
     }
 }
 
-Appointment.contextTypes ={
-    props:PropTypes.object
+Appointment.contextTypes = {
+    props: PropTypes.object
 }
 
 

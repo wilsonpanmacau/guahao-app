@@ -10,8 +10,14 @@ export const  mobileReg = /^1(3|5|7|8|9)\d{9}$/
 export const  codeReg = /^\d{4}$/
 
 import axios from "@/utils/axios"
-
+import userInfo from "~/mobx/userInfo"
+import {observer} from "mobx-react";
+// observer  订阅  当被观察者observable 改变 重新刷新 组件 
 let timer = null;
+@observer
+
+
+
 export class Login extends Component{
     state = {
         toggle:true,
@@ -97,11 +103,13 @@ export class Login extends Component{
             console.log(res);
             if(!!res.data.type){
                 this.props.history.push("/app/my");
-                var userInfo =  {
+                var user =  {
                     token:res.data.token
                 }
-                sessionStorage.userInfo = JSON.stringify(userInfo)
-                sessionStorage.usertel = res.data.tel
+                sessionStorage.user = JSON.stringify(user)
+                const {changeIsLogin ,changeTel} = userInfo
+                changeIsLogin();
+                changeTel(res.data.tel)
                 this.props.history.push("/app/home");
             }else{
                 delete sessionStorage['userInfo']

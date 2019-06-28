@@ -1,13 +1,20 @@
 import React, { Component } from "react"
 import "./index.scss"
-import  {Head} from "~/components/head"
+import { Head } from "~/components/head"
 import axios from "axios";
-import { Tabs, WhiteSpace, Badge,List } from 'antd-mobile';
+import { Tabs, WhiteSpace, Badge, List } from 'antd-mobile';
 const Item = List.Item;
 const Brief = Item.Brief;
+import { getNewDetail } from "~/actions";
+import history from "@/utils/history";
+import {connect} from "react-redux";
 
-
-export default class News extends Component{
+@connect(
+    state=>({
+            ...state.data
+    })
+)
+export default class News extends Component {
     state = {
         types: [],
         data: []
@@ -21,29 +28,49 @@ export default class News extends Component{
                     data: res.data.result
                 })
             })
+    }
+
+    gotoNewDetaiil = (newid) => {
+
+        console.log(this.props)
+        const {
+            dispatch
+        } = this.props
+
+        // dispatch(getNewDetail(id));
+        dispatch(getNewDetail({
+            url: "/react/getNewDetail",
+            params: {
+                newid
+            },
+            cb: (res) => {
+                console.log(res.data.result);
+            }
+        }))
+        history.push("/app/newdetail")
+
 
     }
-    render(){
-        const{
+
+    render() {
+        const {
             data
-       } = this.state
-        return(
+        } = this.state
+        return (
             <div>
                 <Head title="健康快讯" show={true}></Head>
                 <List className="my-list">
                     {
-                        data.map((item,i)=>{
+                        data.map((item, i) => {
                             return (
-                                <Item align="top" key={i} data_id={item.id} thumb={item.photo} multipleLine>
-                            {item.title}
-                            <Brief>{item.content}</Brief>
-                            </Item>
+                                <Item className="item" align="top" key={i} thumb={item.photo} onClick={() => this.gotoNewDetaiil(item.id)} multipleLine>
+                                    {item.title}
+                                    <Brief>{item.content}</Brief>
+                                </Item>
                             )
-                            
+
                         })
                     }
-                    
-                    
                 </List>
             </div>
         )

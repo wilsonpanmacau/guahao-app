@@ -1,28 +1,39 @@
 import "./index.scss"
 import { Head } from "~/components/head"
 import axios from "@/utils/axios"
-
+import { ListView } from 'antd-mobile';
+import Item from "../../components/item";
+import { connect } from "react-redux";
+@connect(
+    state => ({
+        ...state.data
+    })
+)
 export default class HospitalList extends Component {
     state = {
-        hospitals: []
+        hospitals: [],
+        type: ""
     }
     componentWillMount() {
-        // var type = JSON.parse(location.href.split("?")[1]);
-        // console.log(type)
-        axios.get("/react/getHospitals", {}).then(res => {
-            console.log(res)
-            this.setState({
-                hospitals: res.data.result
-            })
-            console.log(this.state.hospitals)
-        })
+        console.log(this.props)
     }
     render() {
+        const {
+            typename,
+            hosList
+        } = this.props
         return (
             <div>
-                <Head title=""></Head>
-                
+                <Head title={typename} show={true}></Head>
+                {
+                    hosList.map((hos, i) => {
+                        return (
+                            <Item key={i} data={hos}></Item>
+                        )
+                    })
+                }
             </div>
         )
     }
 }
+
